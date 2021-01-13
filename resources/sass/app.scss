@@ -9,3 +9,8 @@
 
 // Vue Multiselect
 @import '~vue-multiselect/dist/vue-multiselect.min.css';
+
+.validation-message {
+    color: $red;
+    font-size: 0.9rem;
+}

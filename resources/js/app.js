@@ -21,6 +21,29 @@ window.Vue = require('vue');
 
 Vue.component('menu-container', require('./Modules/Menu/MenuContainer.vue').default);
 Vue.component('card-component', require('./components/Card.vue').default);
+Vue.component('resto-group', require('./Modules/restos/RestoGroup.vue').default);
+
+// Vuejs Modal
+import VModal from 'vue-js-modal';
+Vue.use(VModal);
+
+// Vuejs Turbolinks
+import Turbolinks from 'turbolinks';
+Turbolinks.start();
+
+import TurbolinksAdapter from 'vue-turbolinks';
+Vue.use(TurbolinksAdapter);
+
+document.addEventListener('turbolinks:load', () => {
+    const element = document.getElementById("app");
+
+    if(element != null)
+    {
+        const app = new Vue({
+            el: element,
+        });
+    }
+});
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -28,6 +51,6 @@ Vue.component('card-component', require('./components/Card.vue').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
-});
+// const app = new Vue({
+//     el: '#app',
+// });

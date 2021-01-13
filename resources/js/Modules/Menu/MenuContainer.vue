@@ -14,7 +14,7 @@
                 <card-component>
                     <template slot="title">Add Menu Items</template>
                     <template slot="body">
-                        <menu-add-form :categories="categories"></menu-add-form>
+                        <menu-add-form :categories="categories" :resto-id="restoId" v-on:addNewItems="handleNewMenuItem"></menu-add-form>
                     </template>
                 </card-component>
             </div>
@@ -35,16 +35,17 @@ export default {
         MenuAddForm
     },
     props: [
-        'items'
+        'items', 'restoId'
     ],
     data() {
         return {
             categories: [],
-            menu: ''
+            menu: '',
+            localitems: this.items
         }
     },
     created() {
-        _.forEach(this.items, (item, key) => {
+        _.forEach(this.localitems, (item, key) => {
             this.categories.push(key);
 
             this.menu = this.categories[0];
@@ -52,7 +53,14 @@ export default {
     },
     computed: {
         currentMenuItems() {
-            return this.items[this.menu];
+            return this.localitems[this.menu];
+        }
+    },
+    methods: {
+        handleNewMenuItem(item,category)
+        {
+            this.localitems[category].unshift(item);
+            // console.log(item);
         }
     }
 }

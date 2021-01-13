@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MenuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +26,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/restos', 'RestaurantController@index');
+Route::get('/restos/menus/{id}', 'MenuController@index');
